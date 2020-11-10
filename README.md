@@ -1,11 +1,3 @@
-# HELLO WORLD
+# Someone is trying to do something
 
-HELLO MAD WORLD?
-
-HI
-
-SUB BRANCH CAN BE MERGED.
-
-BUT FIRST OF ALL, WE MUST MAKE PULL REQUEST.
-
-does it support?
+help
