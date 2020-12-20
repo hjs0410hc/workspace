@@ -8,3 +8,7 @@ output.txt
 #자료구조시험공부
 /dsexam
 /implementation
+#Exclude WrongAnswer
+*(WA).*
+#self Language Study
+/languageStudy
