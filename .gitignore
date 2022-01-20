@@ -16,3 +16,4 @@ output.txt
 /.cph
 /*.cpp
 *.html
+*.bin
