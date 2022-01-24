@@ -5,13 +5,13 @@ int v[1001];
 bool visited[1001];
 int n;
 int ans = 0;
-void bfs(int x, int k){
+void dfs(int x, int k){
     visited[x] = true;
     if(v[x] == k){
         ans++;
         return;
     }
-    bfs(v[x],k);
+    dfs(v[x],k);
 }
 
 
@@ -31,7 +31,7 @@ int main(){
         }
         for(int i=1;i<=n;i++){
             if(!visited[i]){
-                bfs(i,i);
+                dfs(i,i);
             }
         }
         cout << ans << "\n";
