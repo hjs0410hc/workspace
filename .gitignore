@@ -17,3 +17,5 @@ output.txt
 /*.cpp
 *.html
 *.bin
+*.txt
+*.out
