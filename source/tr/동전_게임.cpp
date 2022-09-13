@@ -40,72 +40,29 @@ int arrtoint(){
 }
 int ans = 2e9;
 int res = -1;
-void BF(){
-    if(res == 0 || res == 511){
-        ans = min(ans,num);
-        return;
-    }
-    res ^= 0b111000000;
-    if(!visited[res]){
-        num++;
-        visited[res] = true;
-        BF();
-        num--;
-        res ^= 0b111000000;
-    }
-    res ^= 0b000111000;
-    if(!visited[res]){
-        num++;
-        BF();
-        num--;
-        res ^= 0b000111000;
-    }
-    res ^= 0b000000111;
-    if(!visited[res]){
-        num++;
-        BF();
-        num--;
-        res ^= 0b000000111;
-    }
-    res ^= 0b100100100;
-    if(!visited[res]){
-        num++;
-        BF();
-        num--;
-        res ^= 0b100100100;
-    }
-    res ^= 0b010010010;
-    if(!visited[res]){
-        num++;
-        BF();
-        num--;
-        res ^= 0b010010010;
-    }
-    res ^= 0b001001001;
-    if(!visited[res]){
-        num++;
-        BF();
-        num--;
-        res ^= 0b001001001;
-    }
-    res ^= 0b100010001;
-    if(!visited[res]){
-        num++;
-        BF();
-        num--;
-        res ^= 0b100010001;
-    }
-    res ^= 0b001010100;
-    if(!visited[res]){
-        num++;
-        BF();
-        num--;
-        res ^= 0b001010100;
+int oper[8] = {0b111000000,0b000111000,0b000000111,0b100100100,0b010010010,0b001001001,0b100010001,0b001010100};
+void BFS(int x){
+    queue<pair<int,int>> qpii;
+    qpii.push({x,0});
+    while(!qpii.empty()){
+        pair<int,int> temp = qpii.front();
+        if(temp.first == 0 || temp.first == 511){
+            ans = min(ans,temp.second);
+            break;
+        }
+        qpii.pop();
+        for(int i=0;i<8;i++){
+            int r = temp.first ^ oper[i];
+            if(!visited[r])
+            qpii.push({r,temp.second+1});
+            visited[r]=true;
+        }
     }
 }
 
 void solve(){
-    ans = 0;
+    ans = 2e9;
+    memset(visited,0,sizeof(visited));
     char c;
     for(int i=0;i<3;i++){
         for(int j=0;j<3;j++){
@@ -119,8 +76,12 @@ void solve(){
     }
     res = arrtoint();
     visited[res] = true;
-    BF();
-    cout << ans;
+    BFS(res);
+    if(ans >= 2e9){
+        cout << -1 << "\n";        
+        return;
+    }
+    cout << ans << "\n";
 }
 
 int main(){
